@@ -67,6 +67,8 @@ Stripe (mode test)
 PHPUnit
 
 ⚙️ Installation du projet
+
+
 1️⃣ Cloner le dépôt
 
 git clone <lien_du_repository>
@@ -111,4 +113,5 @@ Boutique : http://127.0.0.1:8000/products
 Panier : http://127.0.0.1:8000/cart
 
 Back-office (admin) : http://127.0.0.1:8000/admin
+
 
