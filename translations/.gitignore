@@ -1,0 +1,14 @@
+# Env
+.env
+
+
+# Doctrine migrations
+/migrations/
+
+# Vendor & cache
+/vendor/
+/var/
+
+# IDE
+.vscode/
+.idea/

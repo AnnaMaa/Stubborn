@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+{% block body %}
+
+<style>
+  .products-page {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 16px;
+  }
+
+  /* Layout : filtre à gauche, grille à droite */
+  .products-layout{
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .filter-box{
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .filter-title{
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .filter-select{
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .card{
+    border:1px solid #ccc;
+    border-radius:10px;
+    padding: 12px;
+  }
+
+  .img{
+    width:100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius:8px;
+    display:block;
+    margin-bottom: 12px;
+    background: #f3f3f3;
+  }
+
+  .name{
+    font-weight: 700;
+    margin: 6px 0 10px;
+  }
+
+  /* Bas de carte : prix à gauche, bouton à droite */
+  .bottom-row{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .price{
+    font-weight: 700;
+  }
+
+  .btn{
+    background:#222;
+    color:#fff;
+    padding:8px 14px;
+    text-decoration:none;
+    border-radius:6px;
+    display:inline-block;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1000px){
+    .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 700px){
+    .products-layout{ grid-template-columns: 1fr; }
+    .grid{ grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="products-page">
+  <h1 style="text-align:center; margin-bottom: 20px;">Tous nos produits</h1>
+
+  <div class="products-layout">
+
+    {# ✅ Filtre en haut à gauche #}
+<aside class="filter-box">
+  <div class="filter-title">Fourchette de prix</div>
+
+  <form method="get" action="{{ path('app_products') }}">
+    <select class="filter-select" name="range" onchange="this.form.submit()">
+      <option value="">Tous les prix</option>
+
+      <option value="10-29" {{ app.request.query.get('range') == '10-29' ? 'selected' : '' }}>
+        10 à 29 €
+      </option>
+
+      <option value="30-35" {{ app.request.query.get('range') == '30-35' ? 'selected' : '' }}>
+        30 à 35 €
+      </option>
+
+      <option value="35-50" {{ app.request.query.get('range') == '35-50' ? 'selected' : '' }}>
+        35 à 50 €
+      </option>
+    </select>
+
+    {# petit bouton si JS désactivé (optionnel) #}
+    <noscript>
+      <button type="submit">Filtrer</button>
+    </noscript>
+  </form>
+</aside>
+
+
+    {# ✅ Grille produits #}
+    <section>
+      <div class="grid">
+        {% for product in products %}
+          <article class="card">
+
+            {% if product.image %}
+              <img class="img" src="{{ asset(product.image) }}" alt="{{ product.name }}">
+            {% else %}
+              <div class="img"></div>
+            {% endif %}
+
+            <div class="name">{{ product.name }}</div>
+
+            <div class="bottom-row">
+              <div class="price">{{ product.price }} €</div>
+
+              {% if app.user %}
+          
+                <a class="btn btn-outline" href="{{ path('app_product_show', {'id': product.id}) }}">VOIR</a>
+
+              {% endif %}
+            </div>
+          </article>
+        {% else %}
+          <p>Aucun produit trouvé.</p>
+        {% endfor %}
+      </div>
+    </section>
+
+   
+
+
+  </div>
+</div>
+
+{% endblock %}

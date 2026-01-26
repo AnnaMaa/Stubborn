@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier produit{% endblock %}
+{% block body %}
+<h1>Modifier le produit</h1>
+{{ include('admin/product/_form.html.twig', { form: form, button_label: 'ENREGISTRER' }) }}
+<a href="{{ path('admin_product_index') }}">Retour</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Back-office{% endblock %}
+
+{% block body %}
+<h1>Gestion des produits</h1>
+
+<p>
+    <a href="{{ path('admin_product_new') }}"
+       style="padding:8px 12px; background:#222; color:white; text-decoration:none; border-radius:4px;">
+        + Ajouter un produit
+    </a>
+</p>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for product in products %}
+    <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} €</td>
+        <td>
+            <a href="{{ path('admin_product_edit', {id: product.id}) }}">Modifier</a>
+
+            <form action="{{ path('admin_product_delete', {id: product.id}) }}" method="post" style="display:inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete_product_' ~ product.id) }}">
+                <button type="submit" style="color:red;">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+<div style="display:flex; justify-content:center; margin-top:50px;">
+  <div style="width:320px; border:1px solid #ccc; padding:20px;">
+
+    <h2 style="margin-top:0;">S'inscrire</h2>
+
+    {{ form_start(registrationForm) }}
+
+      {# Erreurs globales du formulaire #}
+      {{ form_errors(registrationForm) }}
+
+      {# Username (protégé si le champ n'existe pas dans le FormType) #}
+      {% if registrationForm.username is defined %}
+        <div style="margin-bottom:15px;">
+          {{ form_label(registrationForm.username, 'Nom utilisateur :') }}
+          {{ form_widget(registrationForm.username, { attr: { style: 'width:100%; padding:8px;' } }) }}
+          {{ form_errors(registrationForm.username) }}
+        </div>
+      {% endif %}
+
+      <div style="margin-bottom:15px;">
+        {{ form_label(registrationForm.email, 'Adresse mail :') }}
+        {{ form_widget(registrationForm.email, { attr: { style: 'width:100%; padding:8px;' } }) }}
+        {{ form_errors(registrationForm.email) }}
+      </div>
+
+      {# Adresse livraison (protégé si le champ n'existe pas dans le FormType) #}
+      {% if registrationForm.deliveryAddress is defined %}
+        <div style="margin-bottom:15px;">
+          {{ form_label(registrationForm.deliveryAddress, 'Adresse de livraison :') }}
+          {{ form_widget(registrationForm.deliveryAddress, { attr: { style: 'width:100%; padding:8px;' } }) }}
+          {{ form_errors(registrationForm.deliveryAddress) }}
+        </div>
+      {% endif %}
+
+      <div style="margin-bottom:15px;">
+        {{ form_label(registrationForm.plainPassword.first, 'Mot de passe') }}
+        {{ form_widget(registrationForm.plainPassword.first, { attr: { style: 'width:100%; padding:8px;' } }) }}
+        {{ form_errors(registrationForm.plainPassword.first) }}
+      </div>
+
+      <div style="margin-bottom:15px;">
+        {{ form_label(registrationForm.plainPassword.second, 'Confirmer le mot de passe') }}
+        {{ form_widget(registrationForm.plainPassword.second, { attr: { style: 'width:100%; padding:8px;' } }) }}
+        {{ form_errors(registrationForm.plainPassword.second) }}
+      </div>
+
+      <div style="margin-bottom:15px;">
+        {{ form_widget(registrationForm.agreeTerms) }}
+        {{ form_label(registrationForm.agreeTerms) }}
+        {{ form_errors(registrationForm.agreeTerms) }}
+      </div>
+
+      <button type="submit"
+        style="width:100%; padding:10px; background:#4da3ff; border:0; color:white; font-weight:bold;">
+        Créer un compte
+      </button>
+
+    {{ form_end(registrationForm) }}
+
+    <div style="margin-top:15px; border-top:1px solid #ddd; padding-top:15px;">
+      <p style="margin:0 0 10px 0;">Déjà inscrit ?</p>
+      <a href="{{ path('app_login') }}"
+         style="display:block; text-align:center; padding:10px; background:#4da3ff; color:white; text-decoration:none; font-weight:bold;">
+        Se connecter
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

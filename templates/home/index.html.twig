@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+
+    <section class="featured-products">
+        <h1 class="section-title">Sweat-shirts mis en avant</h1>
+
+        <div class="product-grid">
+            {% for product in featuredProducts %}
+                <article class="product-card">
+                    <div class="product-image">
+                        {% if product.image %}
+                            <img src="{{ asset(product.image) }}" alt="{{ product.name }}">
+                        {% else %}
+                            <div class="image-placeholder"></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-info">
+                        <p class="product-name">{{ product.name }}</p>
+                        <p class="product-price">{{ product.price }} €</p>
+                    </div>
+
+                    {% if app.user %}
+                        <a class="btn btn-outline" href="{{ path('app_product_show', {'id': product.id}) }}"
+                        >
+                        VOIR
+                        </a>
+
+                    {% endif %}
+                </article>
+            {% else %}
+                <p>Aucun produit mis en avant pour le moment.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="home-story">
+        <h2> Notre histoire</h2>
+        <p> 
+        Bienvenue chez <strong>Stubborn</strong><br><br>
+        Tout a commencé par une idée simple :crée des vêtements qui durent, quiont du caractère et qui racontent quelque chose.
+        Chaques pièce est pensée avec soin, inspirér par l'authenticité et le détail.
+        <br><br>
+        <strong>Portez ce qui vous ressemble.</strong>
+        </p>
+        </section>
+
+ 
+
+{% endblock %}

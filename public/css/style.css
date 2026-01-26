@@ -1,0 +1,321 @@
+/* Layout global */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f6f6f6;
+    color: #222;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header + navigation */
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-box {
+    border: 2px solid #000;
+    padding: 6px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: inline-block;
+    background: #fff;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.main-nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    text-decoration: underline;
+}
+
+/* Contenu */
+.page-content {
+    padding: 40px 0 60px;
+}
+
+/* Produits mis en avant */
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+}
+
+.product-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 280px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.product-image img,
+.image-placeholder {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #eee;
+}
+
+.product-info {
+    margin-top: 10px;
+}
+
+.product-name {
+    margin: 4px 0;
+    font-weight: 600;
+}
+
+.product-price {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Bouton VOIR */
+.btn {
+    display: inline-block;
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-outline {
+    border: 1px solid #333;
+    color: #333;
+    background: #fff;
+}
+
+.btn-outline:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* Bloc informations société */
+.company-info {
+    background: #fff;
+    border-top: 1px solid #ccc;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* Footer */
+.site-footer {
+    border-top: 1px solid #ddd;
+    background: #fafafa;
+    padding: 15px 0;
+    font-size: 0.85rem;
+    text-align: center;
+}
+/* ---------- PAGE PRODUIT ---------- */
+
+.product-page {
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-top: 40px;
+    padding: 30px;
+}
+
+.product-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.product-picture img,
+.product-picture .image-placeholder {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #eee;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-info-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.product-info-row .label {
+    color: #555;
+}
+
+.product-info-row .value {
+    font-weight: 500;
+}
+
+.size-select {
+    width: 120px;
+    height: 140px; /* liste verticale comme sur la maquette */
+}
+
+/* bouton ajout panier */
+.btn-primary {
+    border: 1px solid #333;
+    background: #fff;
+    color: #333;
+}
+
+.btn-primary:hover {
+    background: #333;
+    color: #fff;
+}
+
+.big-btn {
+    margin-top: 25px;
+    padding: 10px 30px;
+}
+/* ----------- PANIER ----------- */
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 150px 1fr 200px;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    padding: 15px;
+}
+
+.cart-image img,
+.image-placeholder {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    background: #eee;
+    border-radius: 4px;
+}
+
+.cart-info p {
+    margin: 5px 0;
+}
+
+.cart-actions {
+    text-align: right;
+}
+
+.btn-remove {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #fff;
+    text-decoration: none;
+    color: #333;
+}
+
+.btn-remove:hover {
+    background: #333;
+    color: #fff;
+}
+
+.cart-total-block {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.total-box {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 1.1rem;
+}
+
+.cart-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-checkout {
+    padding: 12px 25px;
+    background: #ff9e9e;
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-checkout:hover {
+    background: #ff6e6e;
+}
+
+.btn-continue {
+    padding: 12px 25px;
+    background: #b7e7b7;
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-continue:hover {
+    background: #97d497;
+}
+.main-nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 400;
+    color: black;
+}
+
+.main-nav a.active {
+    font-weight: 700;
+    text-decoration: underline;
+}

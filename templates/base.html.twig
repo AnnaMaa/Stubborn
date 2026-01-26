@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Stubborn{% endblock %}</title>
+
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+        {# notre CSS #}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ random()}}">
+
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="logo-block">
+                    <div class="logo-box">Stubborn</div>
+                    <div class="tagline">Don't compromise on your look</div>
+                </div>
+<nav class="main-nav">
+    {# Toujours visible #}
+    <a href="{{ path('app_home') }}"
+       class="{% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">
+        Accueil
+    </a>
+
+    {% if app.user %}
+        {# Visible seulement si connecté #}
+        <a href="{{ path('app_products') }}"
+           class="{% if app.request.attributes.get('_route') starts with 'app_product' %}active{% endif %}">
+            Boutique
+        </a>
+
+        <a href="{{ path('cart_index') }}"
+           class="{% if app.request.attributes.get('_route') starts with 'cart_' %}active{% endif %}">
+            Panier
+        </a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_product_index') }}">Back-Office</a>
+        {% endif %}
+
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+
+    {% else %}
+        {# Visible seulement si NON connecté #}
+        <a href="{{ path('app_login') }}"
+           class="{% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}">
+            Se connecter
+        </a>
+
+        <a href="{{ path('app_register') }}"
+           class="{% if app.request.attributes.get('_route') == 'app_register' %}active{% endif %}">
+            S'inscrire
+        </a>
+    {% endif %}
+</nav>
+
+
+                
+ </div>
+        </header>
+
+        <main class="container page-content">
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>
+                    Stubborn – Piccadilly Circus, London W1J 0DA, Royaume-Uni –
+                    Contact : <a href="mailto:stubborn@blabla.com">stubborn@blabla.com</a>
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

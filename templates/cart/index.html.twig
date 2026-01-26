@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+<h1 style="margin-bottom:30px;">Votre panier</h1>
+
+{% for message in app.flashes('success') %}
+    <div style="background:#d4edda; color:#155724; padding:10px; margin-bottom:10px; border-radius:4px;">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% if items is empty %}
+    <p>Votre panier est vide.</p>
+    <a href="{{ path('app_products') }}"
+       style="display:inline-block; margin-top:20px; padding:10px 20px;
+              background:#4caf50; color:white; border-radius:5px; text-decoration:none;">
+        Continuer mes achats
+    </a>
+{% else %}
+
+    <div class="cart-list">
+        {% for line in items %}
+            <div class="cart-item">
+
+                {# Image #}
+                <div class="cart-image">
+                    {% if line.product.image %}
+                        <img src="{{ asset(line.product.image) }}" alt="{{ line.product.name }}">
+                    {% else %}
+                        <div class="image-placeholder"></div>
+                    {% endif %}
+                </div>
+
+                {# Nom + Prix + Taille #}
+                <div class="cart-info">
+                    <p><strong>Nom</strong> : {{ line.product.name }}</p>
+                    <p><strong>Prix</strong> : {{ line.product.price }} €</p>
+                    <p><strong>Taille</strong> : {{ line.size ?? 'M' }}</p>
+                </div>
+
+                {# Bouton retirer (✅ id + size) #}
+                <div class="cart-actions">
+                    <a href="{{ path('cart_remove', { id: line.product.id, size: (line.size ?? 'M') }) }}"
+                       class="btn-remove">
+                        Retirer du panier
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="cart-total-block">
+        <div class="total-box">
+            TOTAL : <strong>{{ total }} €</strong>
+        </div>
+
+        <div class="cart-buttons">
+            <a href="{{ path('cart_checkout') }}" class="btn-checkout">
+                FINALISER MA COMMANDE
+            </a>
+
+            <a href="{{ path('app_products') }}" class="btn-continue">
+                CONTINUER MES ACHATS
+            </a>
+        </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

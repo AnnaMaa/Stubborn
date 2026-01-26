@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement réussi{% endblock %}
+
+{% block body %}
+  <section class="checkout-success">
+    <h1>Paiement validé ✅</h1>
+    <p>Merci pour votre achat ! Votre commande a bien été prise en compte.</p>
+
+    <a href="{{ path('app_products') }}" class="btn btn-outline">
+      Continuer mes achats
+    </a>
+  </section>
+{% endblock %}
