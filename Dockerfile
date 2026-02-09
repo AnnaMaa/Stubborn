@@ -22,6 +22,7 @@ COPY . .
 
 # Installer les dépendances Symfony
 RUN composer install --no-dev --optimize-autoloader
+--no-scripts
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/html
