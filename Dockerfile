@@ -1,30 +1,24 @@
 FROM php:8.2-apache
 
-# Extensions PHP nécessaires à Symfony
+# Extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    unzip \
-    git \
-    libicu-dev \
-    libonig-dev \
-    libpq-dev \
+    git unzip libicu-dev libpq-dev libzip-dev \
     && docker-php-ext-install intl pdo pdo_mysql opcache
 
-# Activer mod_rewrite
+# Apache config (IMPORTANT)
+RUN a2dismod mpm_event
+RUN a2dismod mpm_worker
+RUN a2enmod mpm_prefork
 RUN a2enmod rewrite
 
-# Installer Composer
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copier le projet
 WORKDIR /var/www/html
 COPY . .
 
-# Installer les dépendances Symfony
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-
-# Permissions
-RUN chown -R www-data:www-data /var/www/html
-
 EXPOSE 80
+CMD ["apache2-foreground"]
+
