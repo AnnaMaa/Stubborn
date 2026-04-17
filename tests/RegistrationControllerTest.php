@@ -32,39 +32,36 @@ class RegistrationControllerTest extends WebTestCase
 
     public function testRegister(): void
     {
-        // 1) Ouvrir la page register
+        
         $crawler = $this->client->request('GET', '/register');
         self::assertResponseIsSuccessful();
 
-        // 2) Récupérer le formulaire (plus fiable que submitForm('Register', ...))
+        
         $form = $crawler->filter('form[name="registration_form"]')->form();
 
-        // 3) Soumettre avec TOUS les champs attendus + repeated password
+        
         $this->client->submit($form, [
             'registration_form[username]' => 'johnny',
             'registration_form[email]' => 'me@example.com',
             'registration_form[deliveryAddress]' => '1 rue de Paris, 75000 Paris',
 
-            // RepeatedType => first + second
+            
             'registration_form[plainPassword][first]' => 'password',
             'registration_form[plainPassword][second]' => 'password',
 
-            // Checkbox => 1 / true
+            
             'registration_form[agreeTerms]' => 1,
         ]);
 
-        // (optionnel) si ton controller redirect après inscription
-        // self::assertResponseRedirects();
-        // $this->client->followRedirect();
 
-        // 4) L’utilisateur est bien créé
+        
         self::assertCount(1, $this->userRepository->findAll());
         $user = $this->userRepository->findAll()[0];
 
-        // Si ton User a bien isVerified() par défaut à false
+        
         self::assertFalse($user->isVerified());
 
-        // 5) Email de vérification envoyé (si tu utilises Mailer en mode test)
+        
         self::assertEmailCount(0);
 
         $messages = $this->getMailerMessages();
@@ -87,7 +84,7 @@ class RegistrationControllerTest extends WebTestCase
         // 6) “Cliquer” le lien et vérifier que l’utilisateur est verified
         $this->client->request('GET', $verifyUrl);
 
-        // selon ton controller, il peut redirect
+        
         if ($this->client->getResponse()->isRedirection()) {
             $this->client->followRedirect();
         }
