@@ -7,6 +7,7 @@ use Stripe\StripeClient;
 class StripeService
 {
     private StripeClient $client;
+    
 
       public function __construct(string $stripeSecretKey)
     {
@@ -45,8 +46,8 @@ class StripeService
             'mode' => 'payment',
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
-            'success_url' => 'http://127.0.0.1:8000/cart/success',
-            'cancel_url'  => 'http://127.0.0.1:8000/cart',
+            'success_url' => 'https://maaroufi.alwaysdata.net/cart/success',
+            'cancel_url' => 'https://maaroufi.alwaysdata.net/cart',
         ]);
 
         return $session->url;

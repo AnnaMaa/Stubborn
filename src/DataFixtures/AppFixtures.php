@@ -11,16 +11,16 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $products = [
-            ['Blackbelt', 29.90, 'uploads/products/images/Blackbelt.jpeg'],
-            ['Bluebelt', 29.90, 'uploads/products/images/Bluebelt.jpeg'],
-            ['Street', 34.50, 'uploads/products/images/Street.jpeg'],
-            ['Pokeball', 45.00, 'uploads/products/images/Pokeball.jpeg'],
-            ['PinkLady', 29.90, 'uploads/products/images/PinkLady.jpeg'],
-            ['Snow', 32.00, 'uploads/products/images/Snow.jpeg'],
-            ['Greyback', 28.50, 'uploads/products/images/Greyback.jpeg'],
-            ['BlueCloud', 45.00, 'uploads/products/images/BlueCloud.jpeg'],
-            ['BornInUsa', 59.90, 'uploads/products/images/BornInUsa.jpeg'],
-            ['GreenSchool', 42.20, 'uploads/products/images/GreenSchool.jpeg'],
+            ['Blackbelt', 29.90, 'uploads/products/images/Blackbelt.jpg'],
+            ['Bluebelt', 29.90, 'uploads/products/images/Bluebelt.jpg'],
+            ['Street', 34.50, 'uploads/products/images/Street.jpg'],
+            ['Pokeball', 45.00, 'uploads/products/images/Pokeball.jpg'],
+            ['PinkLady', 29.90, 'uploads/products/images/PinkLady.jpg'],
+            ['Snow', 32.00, 'uploads/products/images/Snow.jpg'],
+            ['Greyback', 28.50, 'uploads/products/images/Greyback.jpg'],
+            ['BlueCloud', 45.00, 'uploads/products/images/BlueCloud.jpg'],
+            ['BornInUsa', 59.90, 'uploads/products/images/BornInUsa.jpg'],
+            ['GreenSchool', 42.20, 'uploads/products/images/GreenSchool.jpg'],
         ];
 
         foreach ($products as [$name, $price, $image]) {
